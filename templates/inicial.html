@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Análise Fotovoltaica</title>
+</head>
+
+<body style="
+    font-family:Arial;
+    background:#f5f5f5;
+    margin:0;
+">
+
+    <div style="
+        width:50%;
+        margin:auto;
+        margin-top:60px;
+        background:white;
+        padding:40px;
+        border-radius:20px;
+        box-shadow:0 0 20px rgba(0,0,0,0.1);
+    ">
+
+        <h1>
+            Formulário de análise
+        </h1>
+
+        <p>
+            Informe os dados do imóvel para análise preliminar.
+        </p>
+
+        <hr><br>
+
+     <form action="/resultado" method="POST">
+
+    <!-- CONSUMO -->
+    <label>
+        Consumo mensal (kWh)
+    </label>
+
+    <br><br>
+
+    <input 
+        type="number"
+        name="consumo"
+
+        style="
+            width:100%;
+            padding:12px;
+        "
+    >
+
+    <br><br>
+
+    <!-- ÁREA -->
+    <label>
+        Área disponível
+    </label>
+
+    <br><br>
+
+    <input 
+        type="number"
+        name="area"
+
+        style="
+            width:100%;
+            padding:12px;
+        "
+    >
+
+    <br><br>
+
+    <!-- SOMBRA -->
+    <label>
+        Existe sombreamento?
+    </label>
+
+    <br><br>
+
+    <input 
+        type="text"
+        name="sombra"
+
+        style="
+            width:100%;
+            padding:12px;
+        "
+    >
+
+    <br><br>
+
+    <button>
+        Analisar
+    </button>
+
+</form>
+
+            
+    </div>
+
+</body>
+</html>
+    
+            
+            
