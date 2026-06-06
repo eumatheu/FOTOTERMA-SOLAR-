@@ -3,104 +3,145 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Login - Fototerma</title>
+    <title>Login - FOTOTERMA</title>
 </head>
 
 <body style="
     margin:0;
     font-family:Arial;
-    background:#f5f5f5;
+    background:#F8FAFC;
 ">
 
     <!-- MENU -->
+
     <div style="
-        background:white;
-        padding:20px;
-        box-shadow:0 2px 10px rgba(0,0,0,0.1);
+        background:#1E3A8A;
+        padding:20px 60px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
     ">
 
-        <h2 style="margin:0;">
+        <h2 style="color:white;margin:0;">
             FOTOTERMA
         </h2>
 
+        <div>
+        <a href="/" style="
+    color:white;
+    text-decoration:none;
+">
+    Home
+</a>
+
     </div>
 
-    <!-- LOGIN -->
+    <!-- ÁREA PRINCIPAL -->
+
     <div style="
-        width:35%;
-        margin:auto;
-        margin-top:80px;
-        background:white;
-        padding:40px;
-        border-radius:20px;
-        box-shadow:0 0 20px rgba(0,0,0,0.1);
-        text-align:center;
+        display:flex;
+        justify-content:space-around;
+        align-items:center;
+        padding:80px;
     ">
 
-        <h1>
-            Entrar
-        </h1>
+        <!-- TEXTO -->
 
-        <p>
-            Acesse a plataforma de análise fotovoltaica
-        </p>
+        <div style="
+    width:50%;
+    color:white;
+">
+      <h1 style="
+    font-size:60px;
+    margin-bottom:20px;
+">
+    Plataforma de análise fotovoltaica inteligente
+</h1>
+<p style="
+    color:white;
+    font-size:22px;
+    line-height:1.7;
+">
+    Sistema desenvolvido para auxiliar na análise
+    preliminar de viabilidade solar em residências
+    e pequenos negócios da Ilha de Itamaracá.
+</p>
+        </div>
 
-        <br>
+       <div style="
+    width:420px;
+    background:white;
+    padding:50px;
+    border-radius:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+">
 
-        <form action="/inicial">
+           <h2 style="
+    color:#1E3A8A;
+    text-align:center;
+    margin-bottom:30px;
+">
+    Acessar Conta
+</h2>
+            <form action="/inicial">
 
-            <!-- EMAIL -->
-            <input 
-                type="email"
-                placeholder="Digite seu e-mail"
+                <label>E-mail</label>
+                <br><br>
+  
+                <input type="email" style="
+                    width:100%;
+                    padding:12px;
+                ">
 
-                style="
-                    width:90%;
-                    padding:15px;
-                    margin-bottom:20px;
-                    border-radius:10px;
-                    border:1px solid #ccc;
-                "
-            >
+                <br><br>
 
-            <!-- SENHA -->
-            <input 
-                type="password"
-                placeholder="Digite sua senha"
+                <label>Senha</label>
+                <br><br>
 
-                style="
-                    width:90%;
-                    padding:15px;
-                    margin-bottom:20px;
-                    border-radius:10px;
-                    border:1px solid #ccc;
-                "
-            >
+                <input type="password" style="
+                    width:100%;
+                    padding:12px;
+                ">
 
-            <br>
+                <br><br>
 
-            <!-- BOTÃO -->
-            <button style="
-                background:#ffe600;
-                border:none;
-                padding:15px 30px;
-                border-radius:20px;
-                font-size:16px;
-                font-weight:bold;
-                cursor:pointer;
-            ">
-                Entrar
-            </button>
+             <button style="
+    width:100%;
+    background:#1E3A8A;
+    color:white;
+    border:none;
+    padding:16px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+">
+    Entrar
+</button>
+<br><br>
 
-        </form>
+<p style="text-align:center;">
+    Não possui uma conta?
+</p>
 
-        <br>
+<div style="text-align:center;">
 
-        <p>
-            Não possui conta? Cadastre-se
-        </p>
+    <a href="/cadastro" style="
+        text-decoration:none;
+        color:#1E3A8A;
+        font-weight:bold;
+    ">
+        Criar Conta
+    </a>
+
+</div>
+           </form>
+
+        </div>
 
     </div>
+
+
 
 </body>
 </html>

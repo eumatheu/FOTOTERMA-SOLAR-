@@ -1,38 +1,30 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Resultado da Análise</title>
+    <title>Resultado</title>
 </head>
 
 <body style="
     font-family:Arial;
     background:#F8FAFC;
-    margin:0;
 ">
 
     <div style="
         width:60%;
         margin:auto;
-        margin-top:80px;
+        margin-top:50px;
         background:white;
         padding:40px;
         border-radius:20px;
-        box-shadow:0 0 20px rgba(0,0,0,0.1);
         text-align:center;
     ">
 
-        <h1 style="
-            color:#1E3A8A;
-        ">
+        <h1 style="color:#1E3A8A;">
             Resultado da Análise
         </h1>
 
-        <h2 style="
-            color:#22C55E;
-            font-size:40px;
-        ">
+        <h2 style="color:#22C55E;">
             {{ resultado }}
         </h2>
 
@@ -40,44 +32,33 @@
             Pontuação: {{ pontos }}/9
         </h3>
 
-        <hr>
-
-        <p style="
-            font-size:18px;
-            line-height:1.6;
-        ">
-            Esta análise preliminar indica o potencial do imóvel
-            para instalação de um sistema fotovoltaico.
+        <h3>
+            Economia estimada:
+            R$ {{ economia }}
+        </h3>
+        <p>
+    Irradiação média local:
+    {{ irradiacao }} kWh/m²/dia
+   </p>
+        <p>
+            Esta análise é preliminar e não substitui uma vistoria técnica presencial.
         </p>
 
-        <p style="
-            font-size:18px;
-            line-height:1.6;
-        ">
-            Os resultados apresentados servem apenas como apoio
-            inicial à tomada de decisão.
-        </p>
-
-        <p style="
-            color:red;
-            font-weight:bold;
-        ">
-            A análise não substitui uma vistoria técnica presencial.
-        </p>
-
-        <br>
-
-        <a href="/inicial" style="
-            text-decoration:none;
-            background:#06B6D4;
-            color:white;
-            padding:15px 25px;
-            border-radius:20px;
-            font-weight:bold;
-        ">
+        <a href="/inicial">
             Nova Análise
         </a>
 
+<a href="/dashboard" style="
+    text-decoration:none;
+    background:#1E3A8A;
+    color:white;
+    padding:10px 20px;
+    border-radius:10px;
+    margin-left:15px;
+">
+    Ver Dashboard
+</a>
+ 
     </div>
 
 </body>
