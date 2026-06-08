@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado da Análise — FOTOTERMA</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body style="font-family: Arial; background: #F8FAFC; margin: 0;">
+
+    <!-- MENU -->
+    <div style="background: #1E3A8A; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center;">
+        <h2 style="margin: 0; color: white;">FOTOTERMA</h2>
+        <div>
+            <a href="/" style="text-decoration: none; color: white; margin-right: 20px; font-weight: bold;">Home</a>
+            <a href="/clientes" style="text-decoration: none; color: white; margin-right: 20px; font-weight: bold;">Atendimentos</a>
+            <a href="/inicial" style="text-decoration: none; background: #06B6D4; color: white; padding: 12px 20px; border-radius: 20px; font-weight: bold;">Nova Análise</a>
+        </div>
+    </div>
+
+    <!-- INVIÁVEL -->
+    {% if modo == 'inviavel' %}
+    <div style="width: 55%; margin: 80px auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.1); text-align: center;">
+        <h1 style="color: #DC2626;">Análise Inviável</h1>
+        <p style="font-size: 18px; color: #555;">O sombreamento informado anula 100% da eficiência do sistema, tornando a instalação fotovoltaica inviável para este imóvel.</p>
+        <br>
+        <a href="/inicial" style="text-decoration: none; background: #06B6D4; color: white; padding: 14px 24px; border-radius: 20px; font-weight: bold;">Tentar nova análise</a>
+    </div>
+
+    <!-- RESULTADO NORMAL -->
+    {% else %}
+    <div style="width: 65%; margin: 50px auto; margin-bottom: 60px;">
+
+        <!-- CABEÇALHO -->
+        <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.08); text-align: center; margin-bottom: 24px;">
+            <h1 style="color: #1E3A8A; margin-bottom: 8px;">Resultado da Análise</h1>
+            <p style="font-size: 20px; color: #555; margin: 0;">{{ a['nome'] }} — {{ a['endereco'] }}</p>
+            <p style="font-size: 14px; color: #aaa; margin-top: 6px;">{{ a['data'] }}</p>
+            <br>
+            {% if a['status'] == 'Totalmente viável' %}
+                <span style="background: #DCFCE7; color: #16A34A; padding: 10px 24px; border-radius: 30px; font-size: 20px; font-weight: bold;">✔ {{ a['status'] }}</span>
+            {% elif a['status'] == 'Alerta de eficiência' %}
+                <span style="background: #FEF9C3; color: #CA8A04; padding: 10px 24px; border-radius: 30px; font-size: 20px; font-weight: bold;">⚠ {{ a['status'] }}</span>
+            {% else %}
+                <span style="background: #FEE2E2; color: #DC2626; padding: 10px 24px; border-radius: 30px; font-size: 20px; font-weight: bold;">✖ {{ a['status'] }}</span>
+            {% endif %}
+        </div>
+
+        <!-- DADOS TÉCNICOS -->
+        <div style="background: white; padding: 32px 40px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.08); margin-bottom: 24px;">
+            <h2 style="color: #1E3A8A; margin-top: 0;">Dados Técnicos</h2>
+            <hr>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 12px 0; color: #555;">Região LABREN</td>
+                    <td style="padding: 12px 0; font-weight: bold; text-align: right;">ID {{ a['ponto_labren'] }}</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 12px 0; color: #555;">Irradiação solar utilizada</td>
+                    <td style="padding: 12px 0; font-weight: bold; text-align: right;">{{ a['irradiacao'] }} kWh/m².dia</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 12px 0; color: #555;">Eficiência final do sistema</td>
+                    <td style="padding: 12px 0; font-weight: bold; text-align: right;">{{ (100 - a['sombra'] - 20) | round(1) }}%
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 12px 0; color: #555;">Placas necessárias</td>
+                    <td style="padding: 12px 0; font-weight: bold; text-align: right;">{{ a['num_paineis'] }} unidades</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 12px 0; color: #555;">Área necessária</td>
+                    <td style="padding: 12px 0; font-weight: bold; text-align: right;">{{ a['area_nec'] }} m²</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px 0; color: #555;">Área disponível</td>
+                    <td style="padding: 12px 0; font-weight: bold; text-align: right;">{{ a['area_disp'] }} m²</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ANÁLISE FINANCEIRA -->
+        <div style="background: white; padding: 32px 40px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.08); margin-bottom: 24px;">
+            <h2 style="color: #1E3A8A; margin-top: 0;">Análise Financeira</h2>
+            <hr>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 12px 0; color: #555;">Investimento estimado</td>
+                    <td style="padding: 12px 0; font-weight: bold; text-align: right;">R$ {{ "%.2f"|format(a['investimento']) }}</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 12px 0; color: #555;">Tempo de retorno (Payback)</td>
+                    <td style="padding: 12px 0; font-weight: bold; text-align: right;">{{ a['payback'] }} anos</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 12px 0; color: #555;">ROI esperado em 25 anos</td>
+                    <td style="padding: 12px 0; font-weight: bold; text-align: right;">{{ a['roi'] }}%</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px 0; color: #555;">Lucro líquido no período</td>
+                    <td style="padding: 12px 0; font-weight: bold; text-align: right; color: #16A34A;">R$ {{ "%.2f"|format(a['lucro_liquido']) }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ── GRÁFICOS ── -->
+        <div style="background: white; padding: 32px 40px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.08); margin-bottom: 24px;">
+            <h2 style="color: #1E3A8A; margin-top: 0;">Análise Visual</h2>
+            <hr>
+
+            <!-- Pizza + Barra lado a lado -->
+            <div style="display: flex; gap: 32px; margin-top: 24px; margin-bottom: 40px; align-items: flex-start;">
+
+                <!-- PIZZA: Investimento vs Lucro -->
+                <div style="flex: 1; min-width: 0; text-align: center;">
+                    <h3 style="color: #555; font-size: 15px; margin-bottom: 12px;">Investimento vs Lucro Líquido</h3>
+                    <div style="position: relative; height: 260px;">
+                        <canvas id="graficoPizza"></canvas>
+                    </div>
+                </div>
+
+                <!-- BARRA: Área disponível vs necessária -->
+                <div style="flex: 1; min-width: 0; text-align: center;">
+                    <h3 style="color: #555; font-size: 15px; margin-bottom: 12px;">Área Disponível vs Necessária (m²)</h3>
+                    <div style="position: relative; height: 260px;">
+                        <canvas id="graficoBarra"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- LINHA: Retorno acumulado em 25 anos -->
+            <div style="text-align: center;">
+                <h3 style="color: #555; font-size: 15px; margin-bottom: 12px;">Retorno Financeiro Acumulado em 25 Anos (R$)</h3>
+                <canvas id="graficoLinha" style="max-height: 300px;"></canvas>
+            </div>
+        </div>
+
+        <!-- AVISO -->
+        <div style="background: #FEF9C3; border-left: 4px solid #CA8A04; padding: 16px 24px; border-radius: 8px; margin-bottom: 24px;">
+            <p style="margin: 0; color: #92400E; font-size: 14px;">⚠ Esta análise serve como apoio inicial à tomada de decisão e não substitui uma vistoria técnica presencial.</p>
+        </div>
+
+        <!-- AÇÕES -->
+        <div style="display: flex; gap: 16px;">
+            <a href="/inicial" style="flex: 1; text-decoration: none; background: #06B6D4; color: white; padding: 16px; border-radius: 12px; font-weight: bold; font-size: 16px; text-align: center;">Nova Análise</a>
+            <a href="/clientes" style="flex: 1; text-decoration: none; background: #1E3A8A; color: white; padding: 16px; border-radius: 12px; font-weight: bold; font-size: 16px; text-align: center;">Ver Todos os Atendimentos</a>
+        </div>
+
+    </div>
+
+    <!-- ── SCRIPTS DOS GRÁFICOS ── -->
+    <script>
+        const investimento  = {{ a['investimento'] }};
+        const lucroLiquido  = {{ a['lucro_liquido'] }};
+        const areaDisp      = {{ a['area_disp'] }};
+        const areaNec       = {{ a['area_nec'] }};
+        const ecoAnual      = ({{ a['consumo'] }} * {{ a['tarifa'] }}) * 12;
+        const payback       = {{ a['payback'] }};
+
+        // ── PIZZA: Investimento vs Lucro ──────────────────────────
+        new Chart(document.getElementById('graficoPizza'), {
+            type: 'pie',
+            data: {
+                labels: ['Investimento', 'Lucro Líquido'],
+                datasets: [{
+                    data: [investimento, lucroLiquido > 0 ? lucroLiquido : 0],
+                    backgroundColor: ['#1E3A8A', '#22C55E'],
+                    borderWidth: 2,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: {
+                        callbacks: {
+                            label: ctx => ' R$ ' + ctx.parsed.toLocaleString('pt-BR', {minimumFractionDigits: 2})
+                        }
+                    }
+                }
+            }
+        });
+
+        // ── BARRA: Área disponível vs necessária ──────────────────
+        new Chart(document.getElementById('graficoBarra'), {
+            type: 'bar',
+            data: {
+                labels: ['Área Disponível', 'Área Necessária'],
+                datasets: [{
+                    label: 'm²',
+                    data: [areaDisp, areaNec],
+                    backgroundColor: [
+                        areaDisp >= areaNec ? '#22C55E' : '#DC2626',
+                        '#1E3A8A'
+                    ],
+                    borderRadius: 8,
+                    borderSkipped: false
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { callback: v => v + ' m²' }
+                    }
+                }
+            }
+        });
+
+        // ── LINHA: Retorno acumulado em 25 anos ───────────────────
+        const anos    = Array.from({length: 26}, (_, i) => i);
+        const retorno = anos.map(ano => Math.round((ecoAnual * ano) - investimento));
+
+        new Chart(document.getElementById('graficoLinha'), {
+            type: 'line',
+            data: {
+                labels: anos.map(a => 'Ano ' + a),
+                datasets: [{
+                    label: 'Retorno Acumulado (R$)',
+                    data: retorno,
+                    borderColor: '#1E3A8A',
+                    backgroundColor: 'rgba(30, 58, 138, 0.08)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 3,
+                    pointBackgroundColor: retorno.map(v => v >= 0 ? '#22C55E' : '#DC2626')
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: ctx => ' R$ ' + ctx.parsed.y.toLocaleString('pt-BR', {minimumFractionDigits: 2})
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        ticks: { callback: v => 'R$ ' + v.toLocaleString('pt-BR') }
+                    }
+                }
+            }
+        });
+    </script>
+
+    {% endif %}
+
+    <!-- RODAPÉ -->
+    <div style="background: #1E3A8A; color: white; text-align: center; padding: 25px;">
+        <p>© 2026 FOTOTERMA - Plataforma de Análise Fotovoltaica</p>
+    </div>
+
+
+    <script>
+        localStorage.setItem('fototerma_analisou', '1');
+    </script>
+
+</body>
+</html>

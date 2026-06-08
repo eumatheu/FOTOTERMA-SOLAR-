@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Atendimentos — FOTOTERMA</title>
+</head>
+<body style="
+    font-family: Arial;
+    background: #F8FAFC;
+    margin: 0;
+">
+
+    <!-- MENU -->
+    <div style="
+        background: #1E3A8A;
+        padding: 20px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    ">
+        <h2 style="margin: 0; color: white;">FOTOTERMA</h2>
+        <div>
+            <a href="/" style="
+                text-decoration: none;
+                color: white;
+                margin-right: 20px;
+                font-weight: bold;
+            ">Home</a>
+            <a href="/inicial" style="
+                text-decoration: none;
+                background: #06B6D4;
+                color: white;
+                padding: 12px 20px;
+                border-radius: 20px;
+                font-weight: bold;
+            ">Nova Análise</a>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div style="padding: 40px 60px;">
+
+        <h1 style="color: #1E3A8A;">Atendimentos Registrados</h1>
+        <p style="color: #555;">Total: {{ atendimentos | length }} atendimento(s)</p>
+        <hr>
+
+        {% if atendimentos %}
+        <table style="
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.08);
+        ">
+            <thead>
+                <tr style="background: #1E3A8A; color: white;">
+                    <th style="padding: 14px; text-align: left;">#</th>
+                    <th style="padding: 14px; text-align: left;">Nome</th>
+                    <th style="padding: 14px; text-align: left;">Endereço</th>
+                    <th style="padding: 14px; text-align: left;">Status</th>
+                    <th style="padding: 14px; text-align: left;">Painéis</th>
+                    <th style="padding: 14px; text-align: left;">Investimento</th>
+                    <th style="padding: 14px; text-align: left;">Payback</th>
+                    <th style="padding: 14px; text-align: left;">Data</th>
+                    <th style="padding: 14px; text-align: center;">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for a in atendimentos %}
+                <tr style="
+                    border-bottom: 1px solid #eee;
+                    {% if loop.index is even %}background: #F8FAFC;{% endif %}
+                ">
+                    <td style="padding: 14px;">{{ a.id }}</td>
+                    <td style="padding: 14px; font-weight: bold;">{{ a.nome }}</td>
+                    <td style="padding: 14px;">{{ a.endereco }}</td>
+                    <td style="padding: 14px;">
+                        {% if a.status == "Totalmente viável" %}
+                            <span style="
+                                background: #DCFCE7;
+                                color: #16A34A;
+                                padding: 4px 10px;
+                                border-radius: 20px;
+                                font-size: 13px;
+                                font-weight: bold;
+                            ">{{ a.status }}</span>
+                        {% elif a.status == "Alerta de eficiência" %}
+                            <span style="
+                                background: #FEF9C3;
+                                color: #CA8A04;
+                                padding: 4px 10px;
+                                border-radius: 20px;
+                                font-size: 13px;
+                                font-weight: bold;
+                            ">{{ a.status }}</span>
+                        {% else %}
+                            <span style="
+                                background: #FEE2E2;
+                                color: #DC2626;
+                                padding: 4px 10px;
+                                border-radius: 20px;
+                                font-size: 13px;
+                                font-weight: bold;
+                            ">{{ a.status }}</span>
+                        {% endif %}
+                    </td>
+                    <td style="padding: 14px;">{{ a.num_paineis }} un.</td>
+                    <td style="padding: 14px;">R$ {{ "%.2f"|format(a.investimento) }}</td>
+                    <td style="padding: 14px;">{{ "%.1f"|format(a.payback) }} anos</td>
+                    <td style="padding: 14px; font-size: 13px; color: #888;">{{ a.data }}</td>
+                    <td style="padding: 14px; text-align: center;">
+
+                        <!-- Ver detalhes -->
+                        <a href="/atendimento/{{ a.id }}" style="
+                            text-decoration: none;
+                            background: #1E3A8A;
+                            color: white;
+                            padding: 6px 12px;
+                            border-radius: 8px;
+                            font-size: 13px;
+                            margin-right: 4px;
+                        ">Ver</a>
+
+                        <!-- Editar -->
+                        <a href="/atendimento/{{ a.id }}/editar" style="
+                            text-decoration: none;
+                            background: #F97316;
+                            color: white;
+                            padding: 6px 12px;
+                            border-radius: 8px;
+                            font-size: 13px;
+                            margin-right: 4px;
+                        ">Editar</a>
+
+                        <!-- Deletar -->
+                        <form action="/atendimento/{{ a.id }}/deletar" method="POST"
+                              style="display: inline;"
+                              onsubmit="return confirm('Tem certeza que deseja excluir o atendimento de {{ a.nome }}?')">
+                            <button type="submit" style="
+                                background: #DC2626;
+                                color: white;
+                                border: none;
+                                padding: 6px 12px;
+                                border-radius: 8px;
+                                font-size: 13px;
+                                cursor: pointer;
+                            ">Excluir</button>
+                        </form>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% else %}
+        <div style="
+            text-align: center;
+            padding: 80px;
+            color: #aaa;
+        ">
+            <p style="font-size: 20px;">Nenhum atendimento registrado ainda.</p>
+            <a href="/inicial" style="
+                text-decoration: none;
+                background: #06B6D4;
+                color: white;
+                padding: 14px 24px;
+                border-radius: 20px;
+                font-weight: bold;
+            ">Fazer primeira análise</a>
+        </div>
+        {% endif %}
+
+    </div>
+
+    <!-- RODAPÉ -->
+    <div style="
+        background: #1E3A8A;
+        color: white;
+        text-align: center;
+        padding: 25px;
+        margin-top: 60px;
+    ">
+        <p>© 2026 FOTOTERMA - Plataforma de Análise Fotovoltaica</p>
+    </div>
+
+</body>
+</html>

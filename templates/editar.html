@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Análise — FOTOTERMA</title>
+</head>
+<body style="font-family: Arial; background: #f5f5f5; margin: 0;">
+
+    <!-- MENU -->
+    <div style="background: #1E3A8A; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center;">
+        <h2 style="margin: 0; color: white;">FOTOTERMA</h2>
+        <div>
+            <a href="/" style="text-decoration: none; color: white; margin-right: 20px; font-weight: bold;">Home</a>
+            <a href="/clientes" style="text-decoration: none; color: white; margin-right: 20px; font-weight: bold;">Atendimentos</a>
+            <a href="/inicial" style="text-decoration: none; background: #F97316; color: white; padding: 12px 20px; border-radius: 20px; font-weight: bold;">Nova Análise</a>
+        </div>
+    </div>
+
+    <!-- FORMULÁRIO -->
+    <div style="width: 55%; margin: auto; margin-top: 50px; margin-bottom: 60px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.1);">
+
+        <h1 style="color: #1E3A8A;">Editar Análise</h1>
+        <p style="color: #555;">Atualize os dados do atendimento de <strong>{{ a['nome'] }}</strong>.</p>
+        <hr><br>
+
+        <form action="/atendimento/{{ a['id'] }}/editar" method="POST">
+
+            <!-- DADOS DO CLIENTE -->
+            <h3 style="color: #1E3A8A; margin-bottom: 16px;">Dados do Cliente</h3>
+
+            <label>Nome completo</label><br><br>
+            <input type="text" name="nome" value="{{ a['nome'] }}" required
+                style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;">
+            <br><br>
+
+            <label>Endereço</label><br><br>
+            <input type="text" name="endereco" value="{{ a['endereco'] }}" required
+                style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;">
+            <br><br>
+
+            <label>Região da ilha</label><br><br>
+            <select name="regiao" required
+                style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; background: white; font-size: 15px;">
+                <option value="42951" {% if a['ponto_labren'] == 42951 %}selected{% endif %}>Centro / Norte — Forte Orange, Vila Velha, Pilar, Enseadinha</option>
+                <option value="42560" {% if a['ponto_labren'] == 42560 %}selected{% endif %}>Sul — Itatiba, próximo a Itapissuma</option>
+            </select>
+            <br><br>
+
+            <hr><br>
+
+            <!-- DADOS DO IMÓVEL -->
+            <h3 style="color: #1E3A8A; margin-bottom: 16px;">Dados do Imóvel</h3>
+
+            <label>Consumo mensal (kWh)</label><br><br>
+            <input type="number" name="consumo" value="{{ a['consumo'] }}" required min="1"
+                style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;">
+            <br><br>
+
+            <label>Área disponível no telhado (m²)</label><br><br>
+            <input type="number" name="area" value="{{ a['area_disp'] }}" required min="1"
+                style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;">
+            <br><br>
+
+            <label>Tarifa de energia (R$/kWh)</label><br><br>
+            <input type="number" name="tarifa" value="{{ a['tarifa'] }}" required min="0.01" step="0.01"
+                style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;">
+            <br><br>
+
+            <label>Sombreamento estimado (%)</label><br><br>
+            <small style="color: #888;">
+                0% = sem sombra &nbsp;|&nbsp;
+                10% = pouca sombra &nbsp;|&nbsp;
+                30% = sombra moderada &nbsp;|&nbsp;
+                50%+ = sombra severa
+            </small>
+            <br><br>
+            <input type="number" name="sombra" value="{{ a['sombra'] }}" required min="0" max="100"
+                style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;">
+            <br><br>
+
+            <hr><br>
+
+            <!-- ESPECIFICAÇÕES DA PLACA -->
+            <h3 style="color: #1E3A8A; margin-bottom: 6px;">Especificações da Placa Solar</h3>
+            <p style="color: #888; font-size: 14px; margin-bottom: 16px;">Deixe em branco para usar o padrão (550W | 2,20m x 1,13m)</p>
+
+            <label>Potência da placa (W)</label><br><br>
+            <input type="number" name="potencia_placa" value="{{ a['potencia_placa'] }}" min="1"
+                style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;">
+            <br><br>
+
+            <label>Largura da placa (m)</label><br><br>
+            <input type="number" name="largura_placa" value="{{ a['largura_placa'] }}" min="0.01" step="0.01"
+                style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;">
+            <br><br>
+
+            <label>Altura da placa (m)</label><br><br>
+            <input type="number" name="altura_placa" value="{{ a['altura_placa'] }}" min="0.01" step="0.01"
+                style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;">
+            <br><br>
+
+            <hr><br>
+
+            <div style="display: flex; gap: 16px;">
+                <button type="submit" style="
+                    flex: 2;
+                    padding: 16px;
+                    background: #1E3A8A;
+                    color: white;
+                    border: none;
+                    border-radius: 12px;
+                    font-size: 18px;
+                    font-weight: bold;
+                    cursor: pointer;
+                ">Salvar Alterações</button>
+
+                <a href="/clientes" style="
+                    flex: 1;
+                    padding: 16px;
+                    background: #f5f5f5;
+                    color: #555;
+                    border: none;
+                    border-radius: 12px;
+                    font-size: 18px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    text-decoration: none;
+                    text-align: center;
+                ">Cancelar</a>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- RODAPÉ -->
+    <div style="background: #1E3A8A; color: white; text-align: center; padding: 25px;">
+        <p>© 2026 FOTOTERMA - Plataforma de Análise Fotovoltaica</p>
+    </div>
+
+</body>
+</html>

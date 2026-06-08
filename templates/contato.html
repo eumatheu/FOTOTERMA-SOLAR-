@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato — FOTOTERMA</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; color: #1a1a1a; }
+
+        nav {
+            background: #1E3A8A;
+            padding: 16px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav .logo { font-size: 20px; font-weight: bold; color: white; letter-spacing: 1px; text-decoration: none; }
+        nav .links { display: flex; align-items: center; gap: 32px; }
+        nav .links a { text-decoration: none; color: white; font-size: 15px; font-weight: 500; }
+        nav .links a:hover { color: #FDE047; }
+        nav .btn-entrar {
+            background: #F97316; color: white; padding: 10px 24px;
+            border-radius: 30px; font-weight: bold; text-decoration: none; font-size: 15px;
+        }
+        nav .btn-entrar:hover { background: #ea6c0a; }
+
+        footer { background: #1E3A8A; color: white; text-align: center; padding: 24px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo">FOTOTERMA</a>
+        <div class="links">
+            <a href="/">Home</a>
+            <a href="/contato" style="color: #FDE047;">Contato</a>
+            <a href="/login" class="btn-entrar">Entrar</a>
+        </div>
+    </nav>
+
+    <div style="padding: 60px; max-width: 900px; margin: auto;">
+
+        <h1 style="color: #1E3A8A; font-size: 32px; margin-bottom: 8px;">Equipe</h1>
+        <p style="color: #555; margin-bottom: 40px; font-size: 16px;">Entre em contato com os responsáveis pelo projeto FOTOTERMA.</p>
+
+        <div style="display: flex; flex-direction: column; gap: 32px;">
+
+            <div style="display: flex; align-items: center; gap: 32px; background: white; border-radius: 16px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.07);">
+                <img src="/static/matheus.png" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; object-position: top; flex-shrink: 0; border: 3px solid #FDE047;">
+                <div>
+                    <h3 style="color: #1E3A8A; font-size: 20px; margin-bottom: 6px;">Matheus Alexandre</h3>
+                    <p style="color: #888; font-size: 13px; margin-bottom: 8px; font-weight: bold;">Design & Identidade Visual</p>
+                    <p style="color: #555; font-size: 14px; line-height: 1.6; margin-bottom: 10px;">Atua na área de design do projeto, sendo responsável pela criação de interfaces intuitivas e pela definição da identidade visual, com foco na experiência do usuário.</p>
+                    <a href="mailto:mavs@cesar.school" style="color: #F97316; font-weight: bold; text-decoration: none; font-size: 14px;">✉ mavs@cesar.school</a>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 32px; background: white; border-radius: 16px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.07);">
+                <img src="/static/alberto.png" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; object-position: top; flex-shrink: 0; border: 3px solid #FDE047;">
+                <div>
+                    <h3 style="color: #1E3A8A; font-size: 20px; margin-bottom: 6px;">Alberto Ricardo</h3>
+                    <p style="color: #888; font-size: 13px; margin-bottom: 8px; font-weight: bold;">Pesquisa & Dados</p>
+                    <p style="color: #555; font-size: 14px; line-height: 1.6; margin-bottom: 10px;">Atua na área de pesquisa e dados do projeto, sendo responsável pela coleta, análise e interpretação de informações relevantes, transformando dados em insights estratégicos.</p>
+                    <a href="mailto:armsj@cesar.school" style="color: #F97316; font-weight: bold; text-decoration: none; font-size: 14px;">✉ armsj@cesar.school</a>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 32px; background: white; border-radius: 16px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.07);">
+                <img src="/static/joao.png" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; object-position: top; flex-shrink: 0; border: 3px solid #FDE047;">
+                <div>
+                    <h3 style="color: #1E3A8A; font-size: 20px; margin-bottom: 6px;">João Carlos</h3>
+                    <p style="color: #888; font-size: 13px; margin-bottom: 8px; font-weight: bold;">Desenvolvimento Backend</p>
+                    <p style="color: #555; font-size: 14px; line-height: 1.6; margin-bottom: 10px;">Atua como desenvolvedor backend e responsável pela estrutura do projeto, cuidando da lógica, integração de sistemas e organização da base tecnológica.</p>
+                    <a href="mailto:jcrl@cesar.school" style="color: #F97316; font-weight: bold; text-decoration: none; font-size: 14px;">✉ jcrl@cesar.school</a>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 32px; background: white; border-radius: 16px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.07);">
+                <img src="/static/miguel.png" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; object-position: top; flex-shrink: 0; border: 3px solid #FDE047;">
+                <div>
+                    <h3 style="color: #1E3A8A; font-size: 20px; margin-bottom: 6px;">Miguel Roberto</h3>
+                    <p style="color: #888; font-size: 13px; margin-bottom: 8px; font-weight: bold;">Pesquisa & Desenvolvimento Front-end</p>
+                    <p style="color: #555; font-size: 14px; line-height: 1.6; margin-bottom: 10px;">Atua como Pesquisador e Desenvolvedor Front-end, sendo responsável pelo levantamento e análise de dados essenciais ao projeto, além da construção de interfaces intuitivas e funcionais.</p>
+                    <a href="mailto:mrjc@cesar.school" style="color: #F97316; font-weight: bold; text-decoration: none; font-size: 14px;">✉ mrjc@cesar.school</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 FOTOTERMA — Plataforma de Análise Fotovoltaica · Ilha de Itamaracá, PE</p>
+    </footer>
+
+</body>
+</html>
