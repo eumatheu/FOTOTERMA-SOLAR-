@@ -8,7 +8,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Arial, sans-serif; background: #f5f5f5; color: #1a1a1a; }
 
-        /* MENU */
         nav {
             background: #1E3A8A;
             padding: 16px 60px;
@@ -22,63 +21,35 @@
         }
         nav .logo { font-size: 20px; font-weight: bold; color: white; letter-spacing: 1px; }
         nav .links { display: flex; align-items: center; gap: 32px; }
-        nav .links a {
-            text-decoration: none;
-            color: white;
-            font-size: 15px;
-            font-weight: 500;
-        }
+        nav .links a { text-decoration: none; color: white; font-size: 15px; font-weight: 500; }
         nav .links a:hover { color: #FDE047; }
         nav .btn-entrar {
-            background: #F97316;
-            color: white;
-            padding: 10px 24px;
-            border-radius: 30px;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 15px;
+            background: #F97316; color: white; padding: 10px 24px;
+            border-radius: 30px; font-weight: bold; text-decoration: none; font-size: 15px;
         }
         nav .btn-entrar:hover { background: #ea6c0a; }
 
-        /* HERO */
         .hero {
             background: linear-gradient(135deg, #fefce8 0%, #fef08a 100%);
-            padding: 100px 60px;
-            display: flex;
-            align-items: center;
+            padding: 100px 60px; display: flex; align-items: center;
         }
         .hero-content { max-width: 600px; }
         .hero h1 { font-size: 52px; line-height: 1.15; color: #1a1a1a; margin-bottom: 20px; }
         .hero p { font-size: 17px; color: #444; line-height: 1.6; margin-bottom: 32px; }
         .btn-comecar {
-            background: #F97316;
-            color: white;
-            padding: 14px 32px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 16px;
-            text-decoration: none;
-            display: inline-block;
+            background: #F97316; color: white; padding: 14px 32px;
+            border-radius: 30px; font-weight: bold; font-size: 16px;
+            text-decoration: none; display: inline-block;
         }
         .btn-comecar:hover { background: #ea6c0a; }
 
-        /* CARDS */
-        .cards {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            background: white;
-        }
+        .cards { display: grid; grid-template-columns: 1fr 1fr; background: white; }
         .card { padding: 48px 60px; border-right: 1px solid #eee; }
         .card:last-child { border-right: none; }
         .card h2 { color: #1E3A8A; font-size: 22px; margin-bottom: 12px; }
         .card p { color: #555; font-size: 15px; line-height: 1.6; }
 
-        /* ENERGIA SOLAR + BENEFÍCIOS */
-        .energia-solar {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            background: white;
-        }
+        .energia-solar { display: grid; grid-template-columns: 1fr 1fr; background: white; }
         .energia-texto { padding: 60px; background: white; border-right: 1px solid #eee; }
         .energia-texto h2 { color: #1E3A8A; font-size: 26px; margin-bottom: 24px; }
         .energia-texto ul { list-style: none; padding: 0; }
@@ -88,7 +59,6 @@
         .beneficios h2 { color: #1E3A8A; font-size: 26px; margin-bottom: 16px; }
         .beneficios p { color: #555; font-size: 16px; line-height: 1.6; }
 
-        /* RODAPÉ */
         footer { background: #1E3A8A; color: white; text-align: center; padding: 24px; font-size: 14px; }
     </style>
 </head>
@@ -98,9 +68,7 @@
         <span class="logo">FOTOTERMA</span>
         <div class="links">
             <a href="#home">Home</a>
-            <a href="#quem-somos">Quem Somos</a>
-            <a href="/#contato">Contato</a>
-            <a id="link-atendimentos" href="/clientes" style="display:none;">Atendimentos</a>
+            <a href="/contato">Contato</a>
             <a href="/login" class="btn-entrar">Entrar</a>
         </div>
     </nav>
@@ -151,11 +119,5 @@
         <p>© 2026 FOTOTERMA — Plataforma de Análise Fotovoltaica · Ilha de Itamaracá, PE</p>
     </footer>
 
-
-    <script>
-        if (localStorage.getItem('fototerma_analisou')) {
-            document.getElementById('link-atendimentos').style.display = 'inline';
-        }
-    </script>
 </body>
 </html>
