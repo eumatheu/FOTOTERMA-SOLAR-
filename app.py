@@ -62,6 +62,12 @@ def calcular(consumo, area_disp, tarifa, sombra,
         'lucro_liquido': round(lucro_liquido, 2),
         'status'       : status,
     }
+def buscar_irradiacao(ponto_id):
+    for id_ponto, dados in PONTOS_LABREN.items():
+        if id_ponto == ponto_id:
+            return dados['irrad']
+
+    return None
 
 # ── Rotas ─────────────────────────────────────────────────────────────────────
 
@@ -171,9 +177,24 @@ def salvar_edicao(id):
         altura_painel   = float(request.form.get('altura_placa')   or 2.20)
     except (ValueError, KeyError):
         return "Erro: preencha todos os campos corretamente.", 400
+    ponto_id = int(request.form.get('regiao') or 42951)
 
-    ponto_id   = int(request.form.get('regiao') or 42951)
-    irradiacao = PONTOS_LABREN[ponto_id]['irrad']
+    irradiacao = buscar_irradiacao(ponto_id)
+
+    if irradiacao is None:
+        return "Ponto LABREN não encontrado.", 400
+
+    res = calcular(
+        consumo,
+        area_disp,
+        tarifa,
+        sombra,
+        potencia_painel,
+        largura_painel,
+        altura_painel,
+        irradiacao
+    )
+    
 
     res = calcular(consumo, area_disp, tarifa, sombra,
                    potencia_painel, largura_painel, altura_painel, irradiacao)
@@ -231,9 +252,24 @@ def resultado():
         altura_painel   = float(request.form.get('altura_placa')   or 2.20)
     except (ValueError, KeyError):
         return "Erro: preencha todos os campos corretamente.", 400
+    ponto_id = int(request.form.get('regiao') or 42951)
 
-    ponto_id   = int(request.form.get('regiao') or 42951)
-    irradiacao = PONTOS_LABREN[ponto_id]['irrad']
+    irradiacao = buscar_irradiacao(ponto_id)
+
+    if irradiacao is None:
+        return "Ponto LABREN não encontrado.", 400
+
+    res = calcular(
+        consumo,
+        area_disp,
+        tarifa,
+        sombra,
+        potencia_painel,
+        largura_painel,
+        altura_painel,
+        irradiacao
+    )
+    
 
     res = calcular(consumo, area_disp, tarifa, sombra,
                    potencia_painel, largura_painel, altura_painel, irradiacao)
