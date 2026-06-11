@@ -48,6 +48,6 @@ Como executar:
 3- Clone o repositório
 git clone -b main https://github.com/eumatheu/FOTOTERMA-SOLAR-
 4- Instale o flask
-pip instal flask
+pip install flask
 5- Agora clique com o botão direito em app.py, volte ao terminal integrado e digite python app.py para executar a aplicação em um servidor de desenvolvimento
 6- Acesse o link (pode usar control + click no link para abrí-lo)
