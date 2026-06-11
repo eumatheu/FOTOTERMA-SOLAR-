@@ -1,3 +1,5 @@
+PS: Execute no VSCode
+
 ## Funcionalidades
 
 * Cadastro de usuários com perfis (consultor ou cliente)
