@@ -82,4 +82,4 @@ pip install flask
 python app.py
 ```
 
-7. Acesse o endereço exibido no terminal (geralmente `http://127.0.0.1:5000`).
+7. Acesse o endereço exibido no terminal (geralmente `http://127.0.0.1:5000`). Clique no link com control + click para abrí-lo instantâneamente.
