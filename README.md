@@ -21,7 +21,7 @@ SQLite;
 API LABREN;
 Hash SHA-256 para armazenamento seguro de senhas;
 
-Estrutura
+Estrutura:
 O sistema utiliza um banco SQLite (fototerma.db) contendo:
 Usuários;
 Nome;
@@ -42,7 +42,7 @@ Irradiação solar;
 Indicadores financeiros;
 Status da análise.
 
-Como executar
+Como executar:
 No terminal integrado do github (se necessário, crie um arquivo .py, clique com o botão direito nele e selecione "abrir terminal integrado" ou "open integrated terminal")
 1- Clone o repositório
 git clone -b https://github.com/eumatheu/FOTOTERMA-SOLAR-
