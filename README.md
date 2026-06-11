@@ -43,10 +43,11 @@ Indicadores financeiros;
 Status da análise.
 
 Como executar:
-1-Abra o terminal integrado do github: dentro do folder, clique com o botão direito em "abrir em terminal integrado" ou "open in integrated terminal"
-2- Clone o repositório
+1- Abra um novo folder
+2-Abra o terminal integrado do github: dentro do folder, clique com o botão direito em "abrir em terminal integrado" ou "open in integrated terminal"
+3- Clone o repositório
 git clone -b main https://github.com/eumatheu/FOTOTERMA-SOLAR-
-3- Instale o flask
+4- Instale o flask
 pip instal flask
-4- Agora clique com o botão direito em app.py, volte ao terminal integrado e digite python app.py para executar a aplicação em um servidor de desenvolvimento
-5- Acesse o link (pode usar control + click no link para abrí-lo)
+5- Agora clique com o botão direito em app.py, volte ao terminal integrado e digite python app.py para executar a aplicação em um servidor de desenvolvimento
+6- Acesse o link (pode usar control + click no link para abrí-lo)
