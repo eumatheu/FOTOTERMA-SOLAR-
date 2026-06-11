@@ -42,7 +42,11 @@ Irradiação solar;
 Indicadores financeiros;
 Status da análise.
 
-Como executar:
+Como executar
+No terminal integrado do github (se necessário, crie um arquivo .py, clique com o botão direito nele e selecione "abrir terminal integrado" ou "open integrated terminal")
 1- Clone o repositório
-git clone (https://github.com/eumatheu/FOTOTERMA-SOLAR-)
-cd fototerma
+git clone -b https://github.com/eumatheu/FOTOTERMA-SOLAR-
+2- Instale o flask
+pip instal flask
+3- Agora clique com o botão direito em app.py, volte ao terminal integrado e digite python app.py para executar a aplicação em um servidor de desenvolvimento
+4- Acesse o link (pode usar control + click no link para abrí-lo)
