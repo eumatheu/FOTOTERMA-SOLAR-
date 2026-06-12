@@ -63,7 +63,7 @@ O sistema utiliza um banco SQLite (`fototerma.db`) contendo:
 3. Clone o repositório:
 
 ```bash
-git clone -b main https://github.com/eumatheu/FOTOTERMA-SOLAR-.git
+git clone -b main https://github.com/eumatheu/FOTOTERMA-SOLAR-
 ```
 
 4. Entre na pasta do projeto:
